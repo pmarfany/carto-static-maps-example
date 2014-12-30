@@ -11,7 +11,7 @@
 
     <style>
         body {
-            margin: 0 16px;
+            margin: 16px;
             padding: 0;
             border: 0;
             font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
@@ -44,7 +44,7 @@
         }
         .CodeMirror {
             width: 640px;
-            height: 240px;
+            height: 200px;
             font-size: smaller;
         }
         .options, .editor {
@@ -60,10 +60,16 @@
         .bbox {
             display: none;
         }
+        #example_label {
+            color: #c33;
+        }
     </style>
 </head>
 <body>
     <div class="wrap">
+        Load an Example from the select box and play with different layers and options.
+        Or modify MapConfig manually and Cmd/Ctrl+S to apply.
+
         <form class="loader">
             <p>
                 <label for="examples">Example</label>
@@ -84,6 +90,7 @@
                 <textarea id="map_config_editor" class="code"></textarea>
             </div>
             <div class="options">
+                Options
                 <p>
                     <label for="width">Width</label>
                     <input type="text" name="width" id="width" value="600">

@@ -2,7 +2,7 @@ var mapConfigEditor = CodeMirror.fromTextArea(document.getElementById('map_confi
     theme: 'monokai',
     lineNumbers: true,
     mode:  "javascript",
-    height: "240px",
+    height: "200px",
     lineWrapping: true,
     foldGutter: true,
     gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
@@ -33,6 +33,10 @@ function updateStaticPreview() {
         "version": "1.3.0-alpha",
         "layers": checkedLayers
     };
+
+    if (!checkedLayers.length) {
+        return;
+    }
 
     var jsonMapConfig = JSON.stringify(config, null, 2);
     mapConfigEditor.setValue(jsonMapConfig);
@@ -218,6 +222,7 @@ function layerCheckboxLabel(layerName) {
     var labelElement = document.createElement('label');
     labelElement.setAttribute('for', layerName);
     labelElement.innerText = layerName;
+    labelElement.id = layerName + '_label';
     return labelElement;
 }
 
