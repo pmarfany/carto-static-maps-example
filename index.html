@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/codemirror.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/theme/monokai.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/addon/fold/foldgutter.css">
+
+    <style>
+        body {
+            margin: 0 16px;
+            padding: 0;
+            border: 0;
+            font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+        }
+        textarea {
+            padding: 0;
+            margin: 0;
+            border: solid 1px #999;
+            height: 64px;
+        }
+        .wrap {
+            width: 960px;
+            margin: 0 auto;
+        }
+        .loader, .preview, .output {
+            border-bottom: solid 1px #666;
+            padding: 16px 0;
+        }
+        .loader input[type=text], .loader select {
+            margin: 0 24px;
+        }
+        .loader input[type=text] {
+            width: 320px;
+        }
+        .output input {
+            width: 100%;
+        }
+        .preview input {
+            width: 48px;
+        }
+        .CodeMirror {
+            width: 640px;
+            height: 240px;
+            font-size: smaller;
+        }
+        .options, .editor {
+            float: left;
+        }
+        .options {
+            width: 300px;
+            padding: 0 10px;
+        }
+        .clear {
+            clear: both;
+        }
+        .bbox {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <form class="loader">
+            <p>
+                <label for="examples">Example</label>
+                <select name="examples" id="examples"></select>
+
+                <label for="endpoint">Maps API endpoint</label>
+                <!--<input type="text" name="endpoint" id="endpoint" value="http://development.localhost.lan:8181/api/v1/map">-->
+                <input type="text" name="endpoint" id="endpoint" value="http://rochoa-st.cartodb-staging.com/api/v1/map">
+            </p>
+
+            <div id="layers"></div>
+        </form>
+
+
+        <form class="preview">
+            <div class="editor">
+                <label for="map_config_editor" class="editor">MapConfig</label>
+                <textarea id="map_config_editor" class="code"></textarea>
+            </div>
+            <div class="options">
+                <p>
+                    <label for="width">Width</label>
+                    <input type="text" name="width" id="width" value="600">
+                    <label for="height">Height</label>
+                    <input type="text" name="height" id="height" value="400">
+                </p>
+
+                <p>
+                    <label for="bbox">BBox?</label>
+                    <input type="checkbox" name="bbox" id="bbox" checked="checked">
+                    <!--<input type="checkbox" name="bbox" id="bbox">-->
+                </p>
+
+                <label for="lng" class="center">Longitude</label>
+                <input type="text" name="lng" id="lng" value="-2" class="center">
+                <label for="lat" class="center">Latitude</label>
+                <input type="text" name="lat" id="lat" value="42" class="center">
+                <p>
+                    <label for="zoom" class="center">Zoom</label>
+                    <input type="text" name="zoom" id="zoom" value="0" class="center">
+                </p>
+
+                <label for="west" class="bbox">West</label>
+                <input type="text" name="west" id="west" value="-124.7625" class="bbox">
+                <label for="south" class="bbox">South</label>
+                <input type="text" name="south" id="south" value="24.5210" class="bbox">
+                <p>
+                    <label for="east" class="bbox">East</label>
+                    <input type="text" name="east" id="east" value="-66.9326" class="bbox">
+                    <label for="north" class="bbox">North</label>
+                    <input type="text" name="north" id="north" value="49.3845" class="bbox">
+                </p>
+            </div>
+
+            <div class="clear"></div>
+
+        </form>
+
+        <form class="output">
+            <label for="preview_url">Preview URL</label>
+            <input type="text" name="preview_url" id="preview_url" value="">
+        </form>
+
+
+        <form class="editor" style="display: none;">
+            <label for="sql_editor">MapConfig</label>
+            <label for="css_editor">CartoCSS</label>
+            <textarea id="sql_editor" class="code"></textarea>
+            <textarea id="css_editor" class="code"></textarea>
+
+            <div class="clear"></div>
+        </form>
+
+        <p>Image</p>
+
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="preview"/>
+
+    </div>
+</body>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/codemirror.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/addon/fold/foldcode.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/addon/fold/foldgutter.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/addon/fold/brace-fold.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/mode/javascript/javascript.min.js"></script>
+
+<script src="examples.js"></script>
+<script src="app.js"></script>
+
+</html>
