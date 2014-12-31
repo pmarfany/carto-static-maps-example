@@ -9,7 +9,8 @@ var mapConfigEditor = CodeMirror.fromTextArea(document.getElementById('map_confi
 });
 
 
-function updateStaticPreview() {
+function updateStaticPreview(options) {
+    options = options || {};
 
     var example = examples[examplesSelector.value];
 
@@ -39,7 +40,13 @@ function updateStaticPreview() {
     }
 
     var jsonMapConfig = JSON.stringify(config, null, 2);
-    mapConfigEditor.setValue(jsonMapConfig);
+
+    if (!!options.fromEditor) {
+        jsonMapConfig = mapConfigEditor.getValue();
+    } else {
+        mapConfigEditor.setValue(jsonMapConfig);
+    }
+
 
     var request = new XMLHttpRequest();
     request.open('POST', currentEndpoint(), true);
@@ -133,7 +140,7 @@ function loadExample() {
 }
 
 CodeMirror.commands.save = function() {
-    updateStaticPreview();
+    updateStaticPreview({fromEditor: true});
 };
 
 
