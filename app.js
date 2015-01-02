@@ -15,7 +15,7 @@ function updateStaticPreview(options) {
     var example = examples[examplesSelector.value];
 
     // hack to reference example in examples
-    layers.example = {
+    layers.example.config = {
         "type": "mapnik",
         "options": {
             "sql": example.sql,
@@ -27,7 +27,7 @@ function updateStaticPreview(options) {
     var checkedLayerElements = layersElement.querySelectorAll('input:checked'),
         checkedLayers = [];
     for (var i = 0, len = checkedLayerElements.length; i < len; i++) {
-        checkedLayers.push(layers[checkedLayerElements[i].value]);
+        checkedLayers.push(layers[checkedLayerElements[i].value].config);
     }
 
     var config = {
