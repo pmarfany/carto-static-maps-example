@@ -24,6 +24,95 @@ var examples = {
         },
         zoom: 14
     },
+    torque_heatmap: {
+        name: 'torque heatmap',
+        "type": "torque",
+        "sql": "SELECT * FROM ne_10m_populated_places_simple",
+        "cartocss": [
+            'Map {',
+            '  buffer-size:{bufferSize};',
+            '  -torque-frame-count:1;',
+            '  -torque-animation-duration:10;',
+            '  -torque-time-attribute:\"cartodb_id\";',
+            '  -torque-aggregation-function:\"count(cartodb_id)\";',
+            '  -torque-resolution:1;',
+            '  -torque-data-aggregation:linear;',
+            '}',
+            '',
+            '#ne_10m_populated_places_simple{',
+            '  image-filters: colorize-alpha(blue, cyan, lightgreen, yellow , orange, red);',
+            '  marker-file: url(http://s3.amazonaws.com/com.cartodb.assets.static/alphamarker.png);',
+            '  marker-fill-opacity: 0.4;',
+            '  marker-width: 12;',
+            '}',
+            '#ne_10m_populated_places_simple[frame-offset=1] {',
+            ' marker-width:14;',
+            ' marker-fill-opacity:0.2; ',
+            '}',
+            '#ne_10m_populated_places_simple[frame-offset=2] {',
+            ' marker-width:16;',
+            ' marker-fill-opacity:0.1; ',
+            '}'
+        ].join('\n'),
+        center: [35, 0],
+        bbox: {
+            west: -8,
+            south: 50,
+            east: 3,
+            north: 55
+        },
+        zoom: 2
+    },
+    torque_marker_file: {
+        name: 'Torque Marker file',
+        type: 'torque',
+        sql: 'select * from ne_10m_populated_places_simple',
+        cartocss: [
+            'Map {',
+            'buffer-size:{bufferSize};',
+            '-torque-frame-count:1;',
+            '-torque-animation-duration:30;',
+            '-torque-time-attribute:"cartodb_id";',
+            '-torque-aggregation-function:"count(cartodb_id)";',
+            '-torque-resolution:1;',
+            '-torque-data-aggregation:linear;',
+            '}',
+            '',
+            '#ne_10m_populated_places_simple{',
+            '  marker-fill-opacity: 0.9;',
+            '  marker-line-color: #FFF;',
+            '  marker-line-opacity: 1;',
+            '  marker-placement: point;',
+            '  marker-type: ellipse;',
+            '  marker-width: 12;',
+            '  marker-fill: #F84F40;',
+            '  marker-file: url(http://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Map_marker_font_awesome.svg/24px-Map_marker_font_awesome.svg.png);',
+            '  marker-allow-overlap: true;',
+            '}'
+        ].join('\n'),
+        center: [35, 0],
+        bbox: {
+            west: -8,
+            south: 50,
+            east: 3,
+            north: 55
+        },
+        zoom: 2
+    },
+    torque_populated: {
+        name: 'THE TORQUE',
+        type: 'torque',
+        sql: 'select * from ne_10m_populated_places_simple',
+        cartocss: 'Map {\nbuffer-size:{bufferSize};\n-torque-frame-count:1;\n-torque-animation-duration:30;\n-torque-time-attribute:"cartodb_id";\n-torque-aggregation-function:"count(cartodb_id)";\n-torque-resolution:2;\n-torque-data-aggregation:linear;\n}\n\n#ne_10m_populated_places_simple_3{\n  comp-op: lighter;\n  marker-fill-opacity: 0.9;\n  marker-line-color: #2167AB;\n  marker-line-width: 5;\n  marker-line-opacity: 1;\n  marker-type: ellipse;\n  marker-width: 6;\n  marker-fill: #FF9900;\n}\n#ne_10m_populated_places_simple_3[frame-offset=1] {\n marker-width:8;\n marker-fill-opacity:0.45; \n}\n#ne_10m_populated_places_simple_3[frame-offset=2] {\n marker-width:10;\n marker-fill-opacity:0.225; \n}',
+        center: [35, 0],
+        bbox: {
+            west: -8,
+            south: 50,
+            east: 3,
+            north: 55
+        },
+        zoom: 2
+    },
     bbox_torque: {
         name: 'Bounding box + centroid',
         sql: 'select ST_Transform(ST_MakeEnvelope(-5, 51, 2, 54, 4326), 3857) the_geom_webmercator',
@@ -83,8 +172,8 @@ var examples = {
     },
     world_borders: {
         name: 'World Borders Polygons',
-        sql: 'select * from world_borders',
-        cartocss: getCartoCss('world_borders', [
+        sql: 'select * from world_borders_public',
+        cartocss: getCartoCss('world_borders_public', [
             'polygon-fill: #FF3300;',
             'polygon-opacity: 0.7;',
             'line-color: #FFF;',
@@ -102,8 +191,8 @@ var examples = {
     },
     nurburgring_multipolygons: {
         name: 'Nürburgring Multipolygons',
-        sql: 'select * from nurburgring_multipolygons',
-        cartocss: getCartoCss('nurburgring_multipolygons', [
+        sql: 'select * from nurburgring_area_multipolygons',
+        cartocss: getCartoCss('nurburgring_area_multipolygons', [
             'polygon-fill: #FF3300;',
             'polygon-opacity: 0.7;',
             'line-color: #FFF;',
@@ -161,6 +250,15 @@ var examples = {
 
 
 var layers = {
+    plain: {
+        config: {
+            "type": "plain",
+            "options": {
+                "color": "#fabada"
+            }
+        },
+        checked: false
+    },
     labels_basemap_light: {
         config: {
             "type": "http",
@@ -211,13 +309,14 @@ var layers = {
                 "sql": 'SELECT * FROM ne_50m_urban_areas',
                 "cartocss": [
                     '#ne_50m_urban_areas{',
-                    '  polygon-fill: #666;',
+                    '  polygon-fill: #c33;',
                     '  polygon-opacity: 0.7;',
                     '  line-color: #FFF;',
                     '  line-width: 1;',
                     '  line-opacity: 1;',
                     '}'
                 ].join(' '),
+                "interactivity": "cartodb_id",
                 "cartocss_version": "2.2.0"
             }
         },
@@ -291,16 +390,14 @@ var layers = {
         },
         checked: false
     },
-    parks: {
+    named: {
         config: {
-            "type": "cartodb",
+            "type": "named",
             "options": {
-                "sql": "select * from park",
-                "cartocss": "/** simple visualization */\n\n#park{\n  polygon-fill: #229A00;\n  polygon-opacity: 0.7;\n  line-color: #FFF;\n  line-width: 0;\n  line-opacity: 1;\n}",
-                "cartocss_version": "2.1.1"
+                "name": "world_borders"
             }
         },
-        checked: true
+        checked: false
     },
     nycha_developments_july2011: {
         config: {
