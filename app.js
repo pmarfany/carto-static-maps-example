@@ -8,6 +8,17 @@ var mapConfigEditor = CodeMirror.fromTextArea(document.getElementById('map_confi
     gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
 });
 
+function format(str) {
+    for(var i = 1; i < arguments.length; ++i) {
+        var attrs = arguments[i];
+        for(var attr in attrs) {
+            if (attrs.hasOwnProperty(attr)) {
+                str = str.replace(new RegExp('\\{' + attr + '\\}', 'g'), attrs[attr]);
+            }
+        }
+    }
+    return str;
+}
 
 function updateStaticPreview(options) {
     options = options || {};
@@ -16,10 +27,10 @@ function updateStaticPreview(options) {
 
     // hack to reference example in examples
     layers.example.config = {
-        "type": "mapnik",
+        "type": example.type || "mapnik",
         "options": {
             "sql": example.sql,
-            "cartocss": example.cartocss,
+            "cartocss": format(example.cartocss, {bufferSize: inputValue('torque_buffer_size')}),
             "cartocss_version": "2.2.0"
         }
     };
@@ -31,7 +42,7 @@ function updateStaticPreview(options) {
     }
 
     var config = {
-        "version": "1.3.0-alpha",
+        "version": "1.3.0",
         "layers": checkedLayers
     };
 
@@ -52,7 +63,7 @@ function updateStaticPreview(options) {
     request.open('POST', currentEndpoint(), true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     request.onload = function() {
-        if (this.status >= 200 && this.status < 400){
+        if (this.status >= 200 && this.status < 400) {
             var layergroup = JSON.parse(this.response);
             document.getElementById('preview').src = previewUrl(layergroup);
             inputValue('preview_url', previewUrl(layergroup));
@@ -157,6 +168,7 @@ Object.keys(examples).forEach(function(k) {
 
 [
     'zoom',
+    'torque_buffer_size',
     'lat',
     'lng',
     'west',

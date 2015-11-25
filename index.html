@@ -81,7 +81,8 @@
                 <label for="endpoint">Maps API endpoint</label>
                 <!--<input type="text" name="endpoint" id="endpoint" value="http://development.localhost.lan:8181/api/v1/map">-->
                 <!--<input type="text" name="endpoint" id="endpoint" value="http://rochoa-st.cartodb-staging.com/api/v1/map">-->
-                <input type="text" name="endpoint" id="endpoint" value="http://santiago-st.cartodb-staging.com/api/v1/map">
+                <!--<input type="text" name="endpoint" id="endpoint" value="http://santiago-st.cartodb-staging.com/api/v1/map">-->
+                <input type="text" name="endpoint" id="endpoint" value="http://rochoa.cartodb.com/api/v1/map">
             </p>
 
             <div id="layers"></div>
@@ -97,15 +98,18 @@
                 Options
                 <p>
                     <label for="width">Width</label>
-                    <input type="text" name="width" id="width" value="600">
+                    <input type="text" name="width" id="width" value="960">
                     <label for="height">Height</label>
-                    <input type="text" name="height" id="height" value="400">
+                    <input type="text" name="height" id="height" value="600">
                 </p>
 
                 <p>
                     <label for="bbox">BBox?</label>
                     <!--<input type="checkbox" name="bbox" id="bbox" checked="checked">-->
                     <input type="checkbox" name="bbox" id="bbox">
+
+                    <label for="torque_buffer_size">Torque buffer</label>
+                    <input type="text" name="torque_buffer_size" id="torque_buffer_size" value="32">
                 </p>
 
                 <label for="lng" class="center">Longitude</label>
