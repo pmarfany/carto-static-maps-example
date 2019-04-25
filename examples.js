@@ -250,6 +250,46 @@ var examples = {
 
 
 var layers = {
+    voyager: {
+        config: {
+          "type": "http",
+          "options": {
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
+            "subdomains": ["a", "b", "c"]
+          }
+        },
+        checked: false
+    },
+    voyager_nolabels: {
+        config: {
+          "type": "http",
+          "options": {
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png",
+            "subdomains": ["a", "b", "c"]
+          }
+        },
+        checked: false
+    },
+    voyager_only_labels: {
+        config: {
+          "type": "http",
+          "options": {
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png",
+            "subdomains": ["a", "b", "c"]
+          }
+        },
+        checked: false
+    },
+    voyager_labels_under: {
+        config: {
+          "type": "http",
+          "options": {
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png",
+            "subdomains": ["a", "b", "c"]
+          }
+        },
+        checked: true
+    },
     plain: {
         config: {
             "type": "plain",
@@ -297,10 +337,10 @@ var layers = {
                 "subdomains": ["a", "b", "c"]
             }
         },
-        checked: true
+        checked: false
     },
     example: {
-        checked: true
+        checked: false
     },
     urban_areas: {
         config: {
@@ -408,6 +448,6 @@ var layers = {
                 "cartocss_version": "2.1.1"
             }
         },
-        checked: true
+        checked: false
     }
 };
