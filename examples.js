@@ -21,6 +21,21 @@ var examples = {
         center: [41.234937, 1.823735],
         zoom: 17
     },
+    radius: {
+        name: 'Radius on point',
+        sql: "select ST_Transform(ST_Buffer(ST_GeomFromText('POINT(LONGITUDE LATITUDE)', 4326)::geography, RADIUS)::geometry, 3857) as the_geom_webmercator",
+        cartocss: [
+          '#layer {',
+          '  polygon-opacity: 0.2;',
+          '  line-color: #e5005a;',
+          '  line-width: 2;',
+          '  line-opacity: 1;',
+          '}'
+        ].join('\n'),
+        center: [41.234937, 1.823735],
+        zoom: 17,
+        radius: 170,
+    },
     nyc: {
         name: 'NYC',
         sql: 'select null::geometry the_geom_webmercator',

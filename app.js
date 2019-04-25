@@ -35,7 +35,8 @@ function updateStaticPreview(options) {
 
     var values = {
       LATITUDE: inputValue('lat'),
-      LONGITUDE: inputValue('lng')
+      LONGITUDE: inputValue('lng'),
+      RADIUS: inputValue('radius')
     };
 
     // hack to reference example in examples
@@ -150,6 +151,9 @@ function loadExample() {
 
     inputValue('lat', example.center[0]);
     inputValue('lng', example.center[1]);
+    if ( example.hasOwnProperty('radius') ) {
+        inputValue('radius', example.radius);
+    }
 
     if (example.bbox) {
         inputValue('west', example.bbox.west);
@@ -183,6 +187,7 @@ Object.keys(examples).forEach(function(k) {
 // Update preview based on form
 [
     'zoom',
+    'radius',
     'torque_buffer_size',
     'lat',
     'lng',
