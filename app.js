@@ -20,16 +20,29 @@ function format(str) {
     return str;
 }
 
+function formatSQL(sql, options) {
+    var newSql = sql;
+    Object.keys(options).forEach(function(key) {
+        newSql = newSql.replace(key, options[key]);
+    });
+    return newSql;
+}
+
 function updateStaticPreview(options) {
     options = options || {};
 
     var example = examples[examplesSelector.value];
 
+    var values = {
+      LATITUDE: inputValue('lat'),
+      LONGITUDE: inputValue('lng')
+    };
+
     // hack to reference example in examples
     layers.example.config = {
         "type": example.type || "mapnik",
         "options": {
-            "sql": example.sql,
+            "sql": formatSQL(example.sql, values),
             "cartocss": format(example.cartocss, {bufferSize: inputValue('torque_buffer_size')}),
             "cartocss_version": "2.2.0"
         }

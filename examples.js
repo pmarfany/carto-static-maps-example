@@ -5,6 +5,22 @@ function getCartoCss(id, rules) {
 }
 
 var examples = {
+    marker: {
+        name: 'Maker on point',
+        type: "mapnik",
+        sql: "select ST_Transform(ST_GeomFromText('POINT(LONGITUDE LATITUDE)', 4326), 3857) as the_geom_webmercator",
+        cartocss: [
+          '#ne_10m_populated_places_simple {',
+          '  marker-placement: point;',
+          '  marker-type: ellipse;',
+          '  marker-width: 36;',
+          '  marker-file: url(https://pmarfany.github.io/carto-static-maps-example/marker.png);',
+          '  marker-allow-overlap: true;',
+          '}'
+        ].join('\n'),
+        center: [41.234937, 1.823735],
+        zoom: 17
+    },
     nyc: {
         name: 'NYC',
         sql: 'select null::geometry the_geom_webmercator',
