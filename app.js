@@ -158,6 +158,7 @@ CodeMirror.commands.save = function() {
 var examplesSelector = document.getElementById('examples');
 examplesSelector.addEventListener('change', loadExample, false);
 
+// Create selectors for the examples
 Object.keys(examples).forEach(function(k) {
     var option = document.createElement('option');
     option.value = k;
@@ -166,6 +167,7 @@ Object.keys(examples).forEach(function(k) {
     examplesSelector.appendChild(option);
 });
 
+// Update preview based on form
 [
     'zoom',
     'torque_buffer_size',
@@ -176,16 +178,13 @@ Object.keys(examples).forEach(function(k) {
     'east',
     'north',
     'width',
-    'height'
+    'height',
+    'endpoint'
 ].forEach(function(elementId) {
     document.getElementById(elementId).addEventListener('blur', updateStaticPreview, false);
 });
 
-['endpoint'].forEach(function(elementId) {
-    document.getElementById(elementId).addEventListener('blur', updateStaticPreview, false);
-});
-
-
+// Show BBOX options
 document.getElementById('bbox').addEventListener('click', function() {
     updateForm();
     updateStaticPreview();
@@ -218,6 +217,7 @@ function apply(htmlCollection, func) {
     }
 }
 
+// Create selectors for the layers
 var layersElement = document.getElementById('layers');
 Object.keys(layers).forEach(function(layerName) {
     var checkBoxElement = layerCheckboxElement(layerName, layers[layerName].checked);
@@ -244,8 +244,6 @@ function layerCheckboxLabel(layerName) {
     labelElement.id = layerName + '_label';
     return labelElement;
 }
-
-
 
 updateForm();
 loadExample();

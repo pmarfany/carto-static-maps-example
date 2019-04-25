@@ -4,69 +4,10 @@
     <meta charset="UTF-8">
     <title></title>
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/codemirror.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/theme/monokai.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/addon/fold/foldgutter.css">
-
-    <style>
-        body {
-            margin: 16px;
-            padding: 0;
-            border: 0;
-            font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
-        }
-        textarea {
-            padding: 0;
-            margin: 0;
-            border: solid 1px #999;
-            height: 64px;
-        }
-        .wrap {
-            width: 960px;
-            margin: 0 auto;
-        }
-        .loader, .preview, .output {
-            border-bottom: solid 1px #666;
-            padding: 16px 0;
-        }
-        .loader label {
-            margin-right: 10px;
-        }
-        .loader select {
-            margin-right: 10px;
-        }
-        .loader input[type=text] {
-            width: 320px;
-        }
-        .output input {
-            width: 100%;
-        }
-        .preview input {
-            width: 48px;
-        }
-        .CodeMirror {
-            width: 640px;
-            height: 200px;
-            font-size: smaller;
-        }
-        .options, .editor {
-            float: left;
-        }
-        .options {
-            width: 300px;
-            padding: 0 10px;
-        }
-        .clear {
-            clear: both;
-        }
-        .bbox {
-            display: none;
-        }
-        #example_label {
-            color: #c33;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="wrap">
@@ -79,9 +20,6 @@
                 <select name="examples" id="examples"></select>
 
                 <label for="endpoint">Maps API endpoint</label>
-                <!--<input type="text" name="endpoint" id="endpoint" value="http://development.localhost.lan:8181/api/v1/map">-->
-                <!--<input type="text" name="endpoint" id="endpoint" value="http://rochoa-st.cartodb-staging.com/api/v1/map">-->
-                <!--<input type="text" name="endpoint" id="endpoint" value="http://santiago-st.cartodb-staging.com/api/v1/map">-->
                 <input type="text" name="endpoint" id="endpoint" value="http://rochoa.cartodb.com/api/v1/map">
             </p>
 
@@ -105,7 +43,6 @@
 
                 <p>
                     <label for="bbox">BBox?</label>
-                    <!--<input type="checkbox" name="bbox" id="bbox" checked="checked">-->
                     <input type="checkbox" name="bbox" id="bbox">
 
                     <label for="torque_buffer_size">Torque buffer</label>
@@ -158,8 +95,6 @@
 
     </div>
 </body>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/codemirror.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.7.0/addon/fold/foldcode.js"></script>

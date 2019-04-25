@@ -1,0 +1,56 @@
+body {
+  margin: 16px;
+  padding: 0;
+  border: 0;
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+}
+textarea {
+  padding: 0;
+  margin: 0;
+  border: solid 1px #999;
+  height: 64px;
+}
+.wrap {
+  width: 960px;
+  margin: 0 auto;
+}
+.loader, .preview, .output {
+  border-bottom: solid 1px #666;
+  padding: 16px 0;
+}
+.loader label {
+  margin-right: 10px;
+}
+.loader select {
+  margin-right: 10px;
+}
+.loader input[type=text] {
+  width: 320px;
+}
+.output input {
+  width: 100%;
+}
+.preview input {
+  width: 48px;
+}
+.CodeMirror {
+  width: 640px;
+  height: 200px;
+  font-size: smaller;
+}
+.options, .editor {
+  float: left;
+}
+.options {
+  width: 300px;
+  padding: 0 10px;
+}
+.clear {
+  clear: both;
+}
+.bbox {
+  display: none;
+}
+#example_label {
+  color: #c33;
+}

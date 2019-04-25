@@ -340,7 +340,7 @@ var layers = {
         checked: false
     },
     example: {
-        checked: false
+        checked: true,
     },
     urban_areas: {
         config: {
