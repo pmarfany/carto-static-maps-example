@@ -14,26 +14,36 @@
         Load an Example from the select box and play with different layers and options.
         Or modify MapConfig manually and Cmd/Ctrl+S to apply.
 
-        <form class="loader">
-            <p>
-                <label for="examples">Example</label>
-                <select name="examples" id="examples"></select>
+        <form class="section flex-row">
+            <div class="flex-column">
+                <h3>Basic configuration</h3>
+                <label for="examples" class="mr-sm">Example</label>
+                <select name="examples" id="examples" class="mb-md mr-sm"></select>
 
-                <label for="endpoint">Maps API endpoint</label>
+                <label for="endpoint" class="mr-sm">Maps API endpoint</label>
                 <input type="text" name="endpoint" id="endpoint" value="https://rochoa.cartodb.com/api/v1/map">
-            </p>
+            </div>
 
-            <div id="layers"></div>
+            <div class="flex-row flex-grow">
+                <div>
+                    <h3>Layers</h3>
+                    <div id="layers"></div>
+                </div>
+                <div>
+                    <h3>Basemaps</h3>
+                    <div id="basemaps"></div>
+                </div>
+            </div>
         </form>
 
-
-        <form class="preview">
+        <form class="preview section flex-row">
             <div class="editor">
-                <label for="map_config_editor" class="editor">MapConfig</label>
+                <!--<label for="map_config_editor" class="editor">MapConfig</label>-->
+                <h3 class="mt-0">MapConfig</h3>
                 <textarea id="map_config_editor" class="code"></textarea>
             </div>
-            <div class="options">
-                Options
+            <div class="options ml-lg">
+                <h3 class="mt-0">Options</h3>
                 <p>
                     <label for="width">Width</label>
                     <input type="number" name="width" id="width" value="940" min="0">
@@ -72,16 +82,12 @@
                     <input type="text" name="north" id="north" value="49.3845" class="bbox">
                 </p>
             </div>
-
-            <div class="clear"></div>
-
         </form>
 
-        <form class="output">
-            <label for="preview_url">Preview URL</label>
+        <form class="section">
+            <h3 class="mt-0">Preview URL</h3>
             <input type="text" name="preview_url" id="preview_url" value="">
         </form>
-
 
         <form class="editor" style="display: none;">
             <label for="sql_editor">MapConfig</label>
@@ -92,10 +98,10 @@
             <div class="clear"></div>
         </form>
 
-        <p>Image</p>
-
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="preview"/>
-
+        <div>
+            <h3>Image</h3>
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="preview"/>
+        </div>
     </div>
 </body>
 

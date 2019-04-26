@@ -49,8 +49,15 @@ function updateStaticPreview(options) {
         }
     };
 
-    var checkedLayerElements = layersElement.querySelectorAll('input:checked'),
-        checkedLayers = [];
+    var checkedLayers = [];
+
+    // Basemap
+    var checkedRadioElement = basemapsContainer.querySelectorAll('input:checked');
+    if ( checkedRadioElement.length > 0 ) {
+        checkedLayers.push(basemaps[checkedRadioElement[0].value].config);
+    }
+
+    var checkedLayerElements = layersElement.querySelectorAll('input:checked');
     for (var i = 0, len = checkedLayerElements.length; i < len; i++) {
         checkedLayers.push(layers[checkedLayerElements[i].value].config);
     }
@@ -238,21 +245,61 @@ function apply(htmlCollection, func) {
 // Create selectors for the layers
 var layersElement = document.getElementById('layers');
 Object.keys(layers).forEach(function(layerName) {
-    var checkBoxElement = layerCheckboxElement(layerName, layers[layerName].checked);
+    var checkBoxElement = layerCheckboxElement(
+      layerName,
+      layerName,
+      layers[layerName].checked,
+      'checkbox',
+      updateStaticPreview
+    );
     layersElement.appendChild(checkBoxElement);
-    checkBoxElement.addEventListener('click', updateStaticPreview, false);
-
-    layersElement.appendChild(layerCheckboxLabel(layerName));
 });
 
-function layerCheckboxElement(layerName, checked) {
+var basemapsContainer = document.getElementById('basemaps');
+
+function onBasemapRadioClick(e) {
+  const options = basemapsContainer.querySelectorAll(`input:not(#${e.target.id})`);
+
+  // Un-select others
+  for (var i = 0; i < options.length; i++) {
+    options[i].checked = false;
+  }
+
+  updateStaticPreview(e);
+}
+
+Object.keys(basemaps).forEach(function(layerName) {
+  var radioElement = layerCheckboxElement(
+    layerName,
+    'basemaps',
+    basemaps[layerName].checked,
+    'radio',
+    onBasemapRadioClick
+  );
+
+  basemapsContainer.appendChild(radioElement);
+});
+
+function layerCheckboxElement(layerName, name, checked, type, eventListener) {
+    var container = document.createElement('div');
+    container.classList.add('item');
+
+    // Input
     var checkboxElement = document.createElement('input');
     checkboxElement.name = layerName;
     checkboxElement.id = layerName;
     checkboxElement.value = layerName;
-    checkboxElement.type = 'checkbox';
+    checkboxElement.type = type;
     checkboxElement.checked = checked;
-    return checkboxElement;
+
+    // Add event listener
+    checkboxElement.addEventListener('click', eventListener, false);
+
+    // Append
+    container.appendChild(checkboxElement);
+    container.appendChild(layerCheckboxLabel(layerName));
+
+    return container;
 }
 
 function layerCheckboxLabel(layerName) {

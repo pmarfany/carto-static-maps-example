@@ -281,26 +281,6 @@ var examples = {
 
 
 var layers = {
-    voyager: {
-        config: {
-          "type": "http",
-          "options": {
-            "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-            "subdomains": ["a", "b", "c"]
-          }
-        },
-        checked: false
-    },
-    voyager_nolabels: {
-        config: {
-          "type": "http",
-          "options": {
-            "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png",
-            "subdomains": ["a", "b", "c"]
-          }
-        },
-        checked: false
-    },
     voyager_only_labels: {
         config: {
           "type": "http",
@@ -308,65 +288,6 @@ var layers = {
             "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png",
             "subdomains": ["a", "b", "c"]
           }
-        },
-        checked: false
-    },
-    voyager_labels_under: {
-        config: {
-          "type": "http",
-          "options": {
-            "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png",
-            "subdomains": ["a", "b", "c"]
-          }
-        },
-        checked: true
-    },
-    plain: {
-        config: {
-            "type": "plain",
-            "options": {
-                "color": "#fabada"
-            }
-        },
-        checked: false
-    },
-    labels_basemap_light: {
-        config: {
-            "type": "http",
-            "options": {
-                "urlTemplate": "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-                "subdomains": ["a", "b", "c"]
-            }
-        },
-        checked: false
-    },
-    basemap_light: {
-        config: {
-            "type": "http",
-            "options": {
-                "urlTemplate": "http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
-                "subdomains": ["a", "b", "c"]
-            }
-        },
-        checked: false
-    },
-    labels_basemap_dark: {
-        config: {
-            "type": "http",
-            "options": {
-                "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-                "subdomains": ["a", "b", "c"]
-            }
-        },
-        checked: false
-    },
-    basemap_dark: {
-        config: {
-            "type": "http",
-            "options": {
-                "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
-                "subdomains": ["a", "b", "c"]
-            }
         },
         checked: false
     },
@@ -481,4 +402,86 @@ var layers = {
         },
         checked: false
     }
+};
+
+var basemaps = {
+  plain: {
+    config: {
+      "type": "plain",
+      "options": {
+        "color": "#fabada"
+      }
+    },
+    checked: false
+  },
+  voyager: {
+    config: {
+      "type": "http",
+      "options": {
+        "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
+        "subdomains": ["a", "b", "c"]
+      }
+    },
+    checked: false
+  },
+  voyager_nolabels: {
+    config: {
+      "type": "http",
+      "options": {
+        "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png",
+        "subdomains": ["a", "b", "c"]
+      }
+    },
+    checked: false
+  },
+  voyager_labels_under: {
+    config: {
+      "type": "http",
+      "options": {
+        "urlTemplate": "http://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png",
+        "subdomains": ["a", "b", "c"]
+      }
+    },
+    checked: true
+  },
+  labels_basemap_light: {
+    config: {
+      "type": "http",
+      "options": {
+        "urlTemplate": "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+        "subdomains": ["a", "b", "c"]
+      }
+    },
+    checked: false
+  },
+  basemap_light: {
+    config: {
+      "type": "http",
+      "options": {
+        "urlTemplate": "http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+        "subdomains": ["a", "b", "c"]
+      }
+    },
+    checked: false
+  },
+  labels_basemap_dark: {
+    config: {
+      "type": "http",
+      "options": {
+        "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+        "subdomains": ["a", "b", "c"]
+      }
+    },
+    checked: false
+  },
+  basemap_dark: {
+    config: {
+      "type": "http",
+      "options": {
+        "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+        "subdomains": ["a", "b", "c"]
+      }
+    },
+    checked: false
+  }
 };
