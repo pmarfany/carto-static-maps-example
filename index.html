@@ -36,9 +36,9 @@
                 Options
                 <p>
                     <label for="width">Width</label>
-                    <input type="text" name="width" id="width" value="940">
+                    <input type="number" name="width" id="width" value="940" min="0">
                     <label for="height">Height</label>
-                    <input type="text" name="height" id="height" value="400">
+                    <input type="number" name="height" id="height" value="400" min="0">
                 </p>
 
                 <p>
@@ -46,7 +46,7 @@
                     <input type="checkbox" name="bbox" id="bbox">
 
                     <label for="torque_buffer_size">Torque buffer</label>
-                    <input type="text" name="torque_buffer_size" id="torque_buffer_size" value="32">
+                    <input type="number" name="torque_buffer_size" id="torque_buffer_size" value="32" min="0">
                 </p>
 
                 <label for="lng" class="center">Longitude</label>
@@ -55,10 +55,10 @@
                 <input type="text" name="lat" id="lat" value="42" class="center">
                 <p>
                     <label for="zoom" class="center">Zoom</label>
-                    <input type="text" name="zoom" id="zoom" value="0" class="center">
+                    <input type="number" name="zoom" id="zoom" value="0" class="center" min="0">
 
                     <label for="radius" class="center">Radius</label>
-                    <input type="text" name="radius" id="radius" value="170" class="center">
+                    <input type="number" name="radius" id="radius" value="170" class="center" min="0">
                 </p>
 
                 <label for="west" class="bbox">West</label>
